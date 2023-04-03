@@ -1,10 +1,21 @@
 Git Bash:
 
-Спочатку все в локальний репозиторій
+Спочатку все в локальний репозиторій:
 1. В папці з потрібним проектом ПКМ -> Git Bash Here
 2. git init (Має створитись папка .git)
 3. git status. Показує статус репозиторія.
 4. Створити файл .gitignore. Щоб ігнорувати всі папки з назвою .idea, будь-якої вкладеності - **/.idea/
 5. git add -f .gitignore - не додавати .gitignore
+
+Щоб додати і закомітити:
 6. git add . - додати всі файли
-7. git commit -m "inital commit. added all files"  - комміт з поясненням.
+7. git commit -m "initial commit. added all files"  - комміт з поясненням.
+8. git log  - перегляд комітів.
+
+Pull (Після комміта (збереження), але ПЕРЕД push):
+
+Push:
+1. Зайти на GitHub, вибрати вже існуючий, або створити новий репозиторій.
+2. git remote add origin https://github.com/sasha-kravets/hillel-homeworks.git
+3. git branch -M main
+4. git push -u origin main
