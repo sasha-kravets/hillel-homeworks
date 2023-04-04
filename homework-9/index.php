@@ -22,7 +22,7 @@ foreach ($vacancies as $vacancy) {
     }
   }
 }
-
+$keys = array_keys($fullVacancies[0]);
 ?>
 
 <!DOCTYPE html>
@@ -38,28 +38,19 @@ foreach ($vacancies as $vacancy) {
   <div class="container">
     <table>
       <tr class="title">
-<!--        Для створення заголовків перебором-->
-<!--        $vacancy з верхнього php-коду (16 рядок)-->
-        <?php
-//          foreach ( $vacancy as $key => $value ) {
-//            echo "<td>$key</td>";
-//          }
-        ?>
-        <td>ID</td>
-        <td>Title</td>
-        <td>Salary</td>
-        <td>Sector ID</td>
-        <td>Sector Title</td>
+        <?php foreach ( $keys as $key ) { ?>
+          <td><?= $key ?></td>
+        <?php } ?>
       </tr>
-      <?php foreach ( $fullVacancies as $vacancy ): ?>
+      <?php foreach ( $fullVacancies as $vacancy ) { ?>
       <tr>
-        <?php
-          foreach ( $vacancy as $key => $value ) {
-            echo "<td>$value</td>";
-          }
-        ?>
+        <td><?= $vacancy['id'] ?></td>
+        <td><?= $vacancy['title'] ?></td>
+        <td><?= $vacancy['salary'] ?></td>
+        <td><?= $vacancy['sector_id'] ?></td>
+        <td><?= $vacancy['sector_title'] ?></td>
       </tr>
-      <?php endforeach; ?>
+      <?php } ?>
     </table>
   </div>
 </body>

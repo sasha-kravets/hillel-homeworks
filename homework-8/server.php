@@ -5,6 +5,11 @@ $filePath = './file';
 
 function moveFiles($files): void {
   foreach ($files as $file) {
+    // error check
+    if ($file['error']) {
+      echo 'Error';
+      exit;
+    }
     $fileName = $file['name'];
     $tmpName = $file['tmp_name'];
     global $filePath;

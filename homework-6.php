@@ -22,19 +22,15 @@ foreach ($numbers as $number) {
   }
 }
 
-$min = null;
-$max = null;
+$min = $numbers[0];
+$max = $numbers[0];
 
-for ($i = 0; $i < count($numbers); $i++) {
-  $min = $numbers[$i];
-  $max = $numbers[$i];
-  foreach ($numbers as $number) {
-    if ($max < $number) {
-      $max = $number;
-    }
-    if ($min > $number) {
-      $min = $number;
-    }
+foreach ($numbers as $number) {
+  if ($max < $number) {
+    $max = $number;
+  }
+  if ($min > $number) {
+    $min = $number;
   }
 }
 
