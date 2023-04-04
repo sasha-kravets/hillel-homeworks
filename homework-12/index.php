@@ -63,6 +63,7 @@ print_r($numbers);
 echo '</pre>';
 
 // 6. ==================================================================
+
 $words = ['Japan', 'Canada', 'USA', 'Ukraine', 'Spain'];
 function lessThanNumber(array &$words, int $maxLength) : array
 {
