@@ -1,6 +1,7 @@
 <?php
 
 // 1.
+
 $isOdd = fn (int|float $n) : bool => $n % 2 === 0;
 
 function arrFilter(array $arr, callable $isOdd ) : array
