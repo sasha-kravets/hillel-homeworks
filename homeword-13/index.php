@@ -1,9 +1,6 @@
 <?php
-
-require __DIR__ . '/functions/functions.php';
-
 session_start();
-getAlerts();
+require __DIR__ . '/functions/functions.php';
 ?>
 
 <!doctype html>
@@ -23,24 +20,35 @@ getAlerts();
 <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh">
   <div class="row">
     <form action="controllers/registration.php" method="post">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Full Name</label>
-      <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter full name">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password Confirm</label>
-      <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+
+      <?php if (existsMessages('warnings')) { ?>
+      <div class="alert alert-danger" role="alert">
+        <?php
+        foreach (getMessages('warnings') as $warning) {
+          echo "$warning<br>";
+        }
+        ?>
+      </div>
+      <?php } ?>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Full Name</label>
+        <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password Confirm</label>
+        <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 </div>
 

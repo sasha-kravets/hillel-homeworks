@@ -1,25 +1,49 @@
 <?php
 
-function setAlerts(): void
+/**
+ * Set my messages into SESSIONS
+ * @param string $message
+ * @param string $type
+ * @return void
+ */
+function setMessages(string $message, string $type = 'alerts'): void
 {
-  if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    $_SESSION['alerts']['method'] = 'Method not allowed!';
-    header('Location: ../index.php');
-  }
+  $_SESSION[$type][] = $message;
 }
 
-function getAlerts(): void
+/**
+ * Get my messages from SESSIONS
+ * @param string $type
+ * @return array
+ */
+function getMessages(string $type): array
 {
-  if (isset($_SESSION['alerts'])) {
-    print_r($_SESSION['alerts']);
-    unset($_SESSION['alerts']);
-  }
+  $messages = $_SESSION[$type] ?? [];
+  unset($_SESSION[$type]);
+  return $messages;
 }
 
+/**
+ * check if session for this type exists
+ * @param string $type
+ * @return bool
+ */
+function existsMessages(string $type): bool
+{
+  return isset($_SESSION[$type]);
+}
+
+
+
+/**
+ * Just for debug arrays
+ * @param $arr
+ * @return void
+ */
 function debug($arr): void
 {
   "<pre>";
   print_r($arr);
   "</pre>";
-  exit();
+//  exit();
 }
