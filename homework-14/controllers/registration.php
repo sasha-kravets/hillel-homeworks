@@ -19,10 +19,3 @@ $errors = validate($_POST,
     'password_confirm' => 'required|password_confirm'
   ]
 );
-
-if ($errors) {
-//  setMessages($errors);
-  header('Location: ../index.php');
-}
-
-debug($errors);
