@@ -72,13 +72,12 @@ function validate(array $fields, array $rules)
   }
 }
 
-
 /**
  * process array with rules
  * @param array $rules
  * @return array
  */
-function processingRules(array $rules) : array
+function processingRules(array $rules): array
 {
   $rulesArray = [];
   foreach ($rules as $fieldName => $ruleString) {
@@ -92,7 +91,7 @@ function processingRules(array $rules) : array
  * @param string $value
  * @return bool
  */
-function required(string $value) : bool
+function required(string $value): bool
 {
   if ($value) {
     return true;
@@ -106,7 +105,7 @@ function required(string $value) : bool
  * @param int $length
  * @return bool
  */
-function minLength(string $string, int $length) : bool
+function minLength(string $string, int $length): bool
 {
   return mb_strlen($string) > $length;
 }
@@ -117,7 +116,7 @@ function minLength(string $string, int $length) : bool
  * @param int $length
  * @return bool
  */
-function maxLength(string $string, int $length) : bool
+function maxLength(string $string, int $length): bool
 {
   return (mb_strlen($string) < $length);
 }

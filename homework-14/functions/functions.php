@@ -51,7 +51,7 @@ function debug($arr): void
  * @param string $msg
  * @return void
  */
-function displayMessages(string $msg) : void
+function displayMessages(string $msg): void
 {
   if (existsMessages($msg)) {
     echo '<div class="alert alert-danger" role="alert">';
