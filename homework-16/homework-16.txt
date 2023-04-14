@@ -1,0 +1,24 @@
+1. Написати запит на створення БД.
+CREATE DATABASE `my_db`;
+
+2. Написати запит на створення таблиці `users` (`id`, `name`, `email`, `password`, `created_at`).
+CREATE TABLE `users` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(100) DEFAULT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`email`)
+) ENGINE=InnoDB;
+
+3. Написати запит на створення таблиці blogs (стовпці для таблиці оберіть самі) Табиця буде містити блоги які створюватиме юзер.
+CREATE TABLE `blogs` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT UNSIGNED NOT NULL ,
+  `title` VARCHAR(255) NOT NULL,
+  `content` TEXT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+) ENGINE=InnoDB;
