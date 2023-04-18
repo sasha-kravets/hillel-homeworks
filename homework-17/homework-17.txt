@@ -1,0 +1,38 @@
+1. Зв'зати таблицю blogs з таблицею users (повинні були бути створенні в минулому ДЗ) за допомогою зовнішнього ключа.
+При видалені юзера, блоги повині видалятися.
+ALTER TABLE `blogs` ADD FOREIGN KEY (`author_id`) REFERENCES `users`(`id`) ON DELETE CASCADE;
+
+2. Створити таблицю users_roles. Куди будуть записуватись ролі кожного юзера.
+Також використовувати зовнішні ключі для зв'язування таблиць.
+CREATE TABLE `users_roles` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT UNSIGNED NOT NULL,
+  `role` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+3. Створити таблицю категорій, та зв'язати з блогами (маючи на увазі, що один блог може мати безліч категорій,
+а одна категорія може бути в безлічі блогів).
+CREATE TABLE `categories` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `blogs_categories` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `blog_id` BIGINT UNSIGNED NOT NULL,
+  `category_id` BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`blog_id`) REFERENCES `blogs`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE
+);
+
+Для таблиць, блогів, юзерів та категорій додати поле для "софт" видалення.
+ALTER TABLE `blogs` ADD COLUMN `deleted` TINYINT(1) NOT NULL DEFAULT 0;
+ALTER TABLE `categories` ADD COLUMN `deleted` TINYINT(1) NOT NULL DEFAULT 0;
+ALTER TABLE `users` ADD COLUMN `deleted` TINYINT(1) NOT NULL DEFAULT 0;
+
+Створити index для запиту такого вигляду: SELECT * FROM `blogs` WHERE `deleted` = 0 ORDER BY `id`
+ALTER TABLE `blogs` ADD INDEX `index_blogs_deleted` (`deleted`);
